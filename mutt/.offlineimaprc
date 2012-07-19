@@ -1,0 +1,58 @@
+[general]
+ui = ttyui
+accounts = GMail
+pythonfile=~/.mutt/offlineimap.py
+ssl = yes
+
+[Account GMail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/.mail/GMail
+nametrans = lambda folder: {							
+							'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',							
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['archive',
+											 'spam',
+											 'travel',
+											 'Personal',
+											 'receipts',
+											 'notes',
+											 'work',
+											 '[Gmail]/All Mail',
+											 ]
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = samratmansingh@gmail.com
+remotepasseval = keyring.get_password("samratmansingh@gmail.com", "imap.gmail.com")
+realdelete = no
+nametrans = lambda folder: {
+							'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+							'[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
+
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+											 '[Gmail]/All Mail',
+											 'inbox',
+											 'spam',
+											 'travel',
+											 'Personal',
+											 'receipts',
+											 'notes',
+											 'work',
+                                             '[Gmail]/Important',
+                                             '[Gmail]/Spam',
+                                             ]
+ssl=yes
+cert_fingerprint = f3043dd689a2e7dddfbef82703a6c65ea9b634c1
+

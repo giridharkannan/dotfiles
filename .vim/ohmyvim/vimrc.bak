@@ -1,0 +1,57 @@
+call pathogen#infect()
+syntax on
+filetype plugin indent on
+
+"Basic config.
+syntax on                           " syntax highlighing
+filetype on                          " try to detect filetypes
+filetype plugin indent on    " enable loading indent file for filetype
+
+set number
+set autoindent
+set tabstop=4
+set softtabstop=4
+
+"Key mappings
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+nnoremap <F5> :GundoToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+"hit enter to run coffeescript
+nnoremap <F4> :CoffeeRun<CR>
+nnoremap <F3> :CoffeeCompile watch vert<CR>
+
+"coffeescript 2 space indent
+au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+au BufNewFile,BufReadPost *.py setl shiftwidth=4 expandtab
+"Coffeescript recompile on write
+au BufWritePost *.coffee silent CoffeeMake!
+
+" HTML (tab width 2 chr, no wrapping)
+autocmd FileType html set sw=2
+autocmd FileType html set ts=2
+autocmd FileType html set sts=2
+autocmd FileType html set textwidth=0
+" Python (tab width 4 chr, wrap at 79th char)
+autocmd FileType python set sw=4
+autocmd FileType python set ts=4
+autocmd FileType python set sts=4
+autocmd FileType python set textwidth=79
+" CSS (tab width 2 chr, wrap at 79th char)
+autocmd FileType css set sw=2
+autocmd FileType css set ts=2
+autocmd FileType css set sts=2
+autocmd FileType css set textwidth=79
+" JavaScript (tab width 4 chr, wrap at 79th)
+autocmd FileType javascript set sw=2
+autocmd FileType javascript set ts=4
+autocmd FileType javascript set sts=2
+autocmd FileType javascript set textwidth=79
+
+" Solarized Color Scheme
+syntax enable
+set background=dark
+colorscheme badwolf

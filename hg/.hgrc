@@ -1,0 +1,8 @@
+[ui]
+username = Samrat Man Singh <samratmansingh@gmail.com>
+editor = vim
+commitsubrepos = False
+ignore = ~/.hgignore
+
+[extensions]
+prompt = ~/hg/hg-prompt/prompt.py

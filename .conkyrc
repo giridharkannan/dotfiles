@@ -1,0 +1,86 @@
+background yes
+use_xft yes
+xftfont 123:size=8
+xftalpha 0.1
+update_interval 8
+total_run_times 0
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 250 5
+maximum_width 400
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_color gray
+default_shade_color red
+default_outline_color green
+alignment top_right
+gap_x 10
+gap_y 10
+no_buffers no
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 1
+override_utf8_locale yes
+use_spacer right
+text_buffer_size 256
+
+TEXT
+
+${offset 4}${voffset -3}${color DimGray}${font Droid Sans Mono for Powerline L:size=60}${time %I}
+${offset 100}${voffset -120}${color DimGray}${font Droid Sans Mono for Powerline L:size=32}${time :%M}
+${offset 170}${voffset -55}${color DimGray}${font Droid Sans Mono for Powerline L:size=32}${time %P}${color}
+
+${voffset -15}${font :bold:size=15}${color DimGray}$alignc${time %d %b. %Y}
+${font :bold:size=12}${color DimGray}$alignc${time %A}
+
+#Unread mail: ${exec count-mail.py}
+${color #3AA7DD}${hr 2}
+${voffset -35}
+$font${color DimGray}
+${alignc}Battery 
+${battery_bar}
+${alignc}${battery_time}
+$sysname $kernel ${alignr}$machine
+Intel Core i5 $alignr${freq_g cpu0}Ghz
+Uptime $alignr${uptime}
+
+${color #3AA7DD}${hr 2}
+
+${alignc}$font${color DimGray}CPU ${cpu}% 
+${cpubar}
+$alignc CPU: ${hwmon 0 temp 1}°C 
+
+PROCESS               ${alignr}CPU %
+
+${top name 1}${alignr}${top cpu 1} %
+${top name 2}${alignr}${top cpu 2} %
+${top name 3}${alignr}${top cpu 3} %
+${top name 4}${alignr}${top cpu 4} %
+
+${color #3AA7DD}${hr 2}
+
+$font${color DimGray}MEM $alignc $mem / $memmax $alignr $memperc
+${membar}
+
+PROCESS                        ${alignr}MEM %
+
+$font${top_mem name 1}${alignr}${top mem 1} %
+$font${top_mem name 2}${alignr}${top mem 3} %
+$font${top_mem name 3}${alignr}${top mem 4} %
+$font${top_mem name 4}${alignr}${top mem 5} %
+
+${color #3AA7DD}${hr 2}
+
+${color DimGray}Active Interface ${alignr}$gw_iface
+Home IP:${alignr}${addr wlan0}
+
+Download:${alignr} Upload:
+${downspeedf wlan0}kb/s${alignr}${upspeedf wlan0}kb/s
+${totaldown wlan0} ${alignr}${totalup wlan0}
+
+

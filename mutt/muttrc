@@ -1,0 +1,58 @@
+set editor = "vim -f +/^$"
+set mbox_type = Maildir
+set folder = ~/.mail
+set spoolfile = "+GMail/INBOX"
+set postponed = "+GMail/drafts"
+set sendmail    = /usr/bin/msmtp
+
+set mail_check = 0
+unset move
+set delete
+unset confirmappend
+set quit
+unset mark_old
+set edit_headers
+set realname = "Samrat Man Singh"
+set reply_to
+set sort = threads
+set sort_aux = reverse-last-date-received
+mailboxes +GMail/INBOX +GMail/sent +GMail/drafts +GMail/Flask +GMail/spam +GMail/trash
+
+# COLORS {{{
+color status      cyan          black
+color indicator   black         yellow
+color tree        blue          black
+color error       red           black
+color hdrdefault  black         white
+color header      brightyellow  default  "^(From|Subject):"
+color header      brightcyan    default  ^To:
+color header      brightcyan    default  ^Cc:
+color index       black         red      "~F !~p !~P"
+color index       black         cyan     "~T !~F !~p !~P"
+color body        brightwhite   default  " [;:]-*[})>{(<|]
+color body        blue          default  "( *[-+=#*~_]){6,}"
+color signature   cyan          default
+color quoted      green         default
+color quoted1     yellow        default
+color quoted2     red           default
+color markers     brightred     default
+#}}}
+
+# SIDEBAR {{{
+set sidebar_width=25
+set sidebar_visible=yes
+set sidebar_delim='|'
+set sidebar_sort=yes # Not supported anymore?
+# # }}}
+# # KEYBOARD MAPPING {{{
+# # Selection of a mailbox in the index view.
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+ # The same in the pager view.
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+# # }}}}
+
+#folder-hook GMail/* source ~/.mutt/gmail.muttrc
