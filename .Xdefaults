@@ -2,7 +2,7 @@ URxvt.scrollBar: off
 URxvt*termName:screen-256color
 URxvt.foreground:white
 URxvt.background:black
-URxvt.iconFile:    /usr/share/icons/Clarity/scalable/apps/terminal.svg
+URxvt.iconFile:    /usr/share/icons/gnome/48x48/apps/terminal.png
 
 URxvt*font:                 xft:Droid Sans Mono for Powerline:regular:size=11
 URxvt*imFont:               xft:Droid Sans Mono for Powerline:regular:size=11
