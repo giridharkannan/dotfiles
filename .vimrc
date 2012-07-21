@@ -10,7 +10,7 @@ set number
 set autoindent
 set tabstop=4
 set softtabstop=4
-set guioptions+=m  "remove menu bar
+set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove menu bar
 set mouse=a
 
@@ -19,6 +19,9 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+" Enable fancy mode 
+let g:Powerline_symbols = 'fancy'   " Powerline
 
 nnoremap <F5> :GundoToggle<CR>
 map <leader>n :NERDTreeToggle<CR>
@@ -72,19 +75,17 @@ autocmd FileType haskell set textwidth=79
 
 let g:slimv_leader = '\'
 let g:slimv_keybindings = 2
+let g:paredit_mode = 0
 let vimclojure#WantNailgun = 0
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=1
-
-
-" Turn off delimateMate (which provides auto-closing parens) for Clojure files
-" as they just get in the way
-au! FileType clojure let b:loaded_delimitMate=1
 
 augroup ft_clojure
     au!
 
 	au BufNewFile,BufRead *.clj set filetype=clojure
+
+	au FileType clojure let b:loaded_delimitMate=1
     au FileType clojure silent! call TurnOnClojureFolding()
     "au FileType clojure compiler clojure
     au FileType clojure setlocal report=100000
@@ -111,11 +112,11 @@ augroup END
 
 let g:slimv_repl_name = 'SLIMV.REPL'
 let g:slimv_repl_split = 4
-let g:slimv_repl_syntax = 0
+let g:slimv_repl_syntax = 1
 let g:slimv_repl_wrap = 0
 
 " Use a swank command that works, and doesn't require new app windows.
-let g:slimv_swank_clojure = '! xterm -e lein swank &'
+let g:slimv_swank_clojure = '!dtach -n /tmp/dtach-swank.sock -r winch lein swank'
 
 
 " }}}}
@@ -151,8 +152,8 @@ set foldtext=MyFoldText()
 
 " }}}
 
-" Badwolf Color Scheme{{{
+" Color Scheme{{{
 syntax enable
 set background=dark
-colorscheme badwolf
+colorscheme molokai
 " }}}
