@@ -12,12 +12,14 @@ rm ~/.hgignore
 rm ~/.vim -r
 rm ~/hg -r
 rm ~/oh-my-zsh -r
+rm ~/.emacs.d -rf
 rm ~/.tmux.conf
 rm ~/.Xdefaults
 
 echo "Symlinking files..."
 ln -s `pwd`/oh-my-zsh/ ~/
 ln -s `pwd`/.zshrc ~/
+ln -s `pwd`/.emacs.d/ ~/
 ln -s `pwd`/.vim/ ~/
 ln -s `pwd`/.vimrc ~/
 ln -s `pwd`/hg/ ~/
