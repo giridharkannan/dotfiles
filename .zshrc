@@ -46,4 +46,4 @@ export EDITOR="vim"
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 
-
+alias nw='emacsclient -t -a'
