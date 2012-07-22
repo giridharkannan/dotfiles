@@ -1,0 +1,6 @@
+{:user {:plugins [[lein-tarsier "0.9.1"]
+                  [lein-swank "1.4.4"]
+                  [lein-light "0.0.4"]
+                  [lein-cljsbuild "0.2.4"]
+                  [lein-iclojure "1.0"]
+                  ]}}

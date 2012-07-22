@@ -1,0 +1,22 @@
+
+;; ----- smex-history -----
+(
+ eshell
+ package-install
+ cd
+ 5x5
+ arp
+ dbx
+ dig
+)
+
+;; ----- smex-data -----
+(
+ (package-install . 4)
+ (evil-mode . 1)
+ (nrepl-jack-in . 12)
+ (4clojure-problem . 3)
+ (python-menu . 1)
+ (eshell . 3)
+ (nrepl . 1)
+)

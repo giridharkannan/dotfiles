@@ -1,0 +1,10 @@
+import csv
+
+books = csv.reader(open('goodreads_export.csv', 'rb'))
+output_file = open('books.md', 'a')
+
+for row in books:
+    if 'read' in row:
+        output = "**"+row[1]+"** by " + row[2] + "\n"
+        output_file.write(output)
+        print output

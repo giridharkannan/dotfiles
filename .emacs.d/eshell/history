@@ -1,0 +1,12 @@
+ls
+cd ..
+ls
+cd ..
+ls
+lein 
+ls
+find .
+ls
+git status
+git add .zshrc
+git commit -v

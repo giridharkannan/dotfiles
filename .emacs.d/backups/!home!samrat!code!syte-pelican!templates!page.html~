@@ -1,0 +1,11 @@
+{% extends 'base.html %}
+{% block title %}{{page.title}} | Samrat Man Singh{% endblock %}
+
+{% block main_section %}
+<h1>{{ page.title </h1>
+
+{{ page.content }}
+
+{% endblock %}
+
+{% endblock %}
