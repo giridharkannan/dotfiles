@@ -29,8 +29,8 @@
 (evil-mode 1)
 
 ;4-clojure plugin
-(add-to-list 'load-path "~/.emacs.d/4clj-el/")
-(require 'four-clj)
+;(add-to-list 'load-path "~/.emacs.d/4clj-el/")
+;(require 'four-clj)
 
 ;switch between split-windows
 (define-key evil-normal-state-map (kbd "C-l") 'other-window)
