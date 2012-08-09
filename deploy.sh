@@ -16,6 +16,9 @@ rm ~/.emacs.d -rf
 rm ~/.tmux.conf
 rm ~/.Xdefaults
 
+rm ~/.xmonad -r
+rm ~/.xmobarrc
+
 echo "Symlinking files..."
 ln -s `pwd`/oh-my-zsh/ ~/
 ln -s `pwd`/.zshrc ~/
@@ -27,3 +30,6 @@ ln -s `pwd`/.hgrc ~/
 ln -s `pwd`/.hgignore ~/
 ln -s `pwd`/tmux.conf ~/.tmux.conf
 ln -s `pwd`/.Xdefaults ~/.Xdefaults
+
+ln -s `pwd`/xmonad-config/.xmonad ~/
+ln -s `pwd`/xmonad-config/.xmobarrc ~/.xmobarrc

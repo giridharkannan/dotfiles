@@ -1,0 +1,17 @@
+Config { font = "xft:Droid Sans Mono Dotted for Powerline:bold:pixelsize=12"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = TopW L 100 
+       , commands = [ Run Date "%b %d %I:%M" "date" 50
+                    , Run Memory ["-t","<fc=#3399ff><usedbar></fc>"] 10
+                    , Run Com "~/.xmonad/bin/temp.sh" [] "temp" 50
+                    , Run Com "~/.xmonad/bin/wlan.sh" [] "wireless" 50
+                    , Run Com "~/.xmonad/bin/vol.sh" [] "vol" 10
+		    , Run BatteryP ["BAT0"] ["-t", "[<fc=#3399FF><left></fc>] <acstatus>"] 200
+                    , Run CpuFreq ["-t","<cpu0>","-L","0","-H","2","-l","green","-n","grey","-h","#3399FF"] 50
+                    , Run StdinReader
+                    ]
+       , sepChar = "$"
+       , alignSep = "}{"
+       , template = "$StdinReader$ }<fc=#3399ff>$date$</fc>{CPU: $cpufreq$ $temp$ <fc=#444466>|</fc> WLAN: $wireless$ <fc=#444466>|</fc> MEM: [$memory$] <fc=#444466>|</fc> BAT: $battery$"
+       }
