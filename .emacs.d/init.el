@@ -13,6 +13,8 @@
                       color-theme
                       clojure-mode
                       evil
+                      evil-leader
+                      undo-tree
                       nrepl)
   "A list of packages to ensure are installed at launch.")
 
@@ -27,6 +29,9 @@
 ;Activate Evil mode at start up
 (require 'evil)
 (evil-mode 1)
+(add-to-list 'load-path "~/.emacs.d/evil-surround")
+(require 'surround)
+(global-surround-mode 1)
 
 ;4-clojure plugin
 ;(add-to-list 'load-path "~/.emacs.d/4clj-el/")
