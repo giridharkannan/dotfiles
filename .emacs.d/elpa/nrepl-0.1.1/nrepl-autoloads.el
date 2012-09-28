@@ -4,8 +4,9 @@
 
 
 ;;;### (autoloads (nrepl nrepl-jack-in nrepl-enable-on-existing-clojure-buffers
-;;;;;;  nrepl-interaction-mode) "nrepl" "nrepl.el" (20488 5819))
-;;; Generated autoloads from nrepl.el
+;;;;;;  nrepl-interaction-mode) "nrepl" "../../../../../.emacs.d/elpa/nrepl-0.1.1/nrepl.el"
+;;;;;;  "1e0e8a4ad4a6aa2c14f2860f15c46b2c")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/nrepl-0.1.1/nrepl.el
 
 (autoload 'nrepl-interaction-mode "nrepl" "\
 Minor mode for nrepl interaction from a Clojure buffer.
@@ -29,7 +30,9 @@ Minor mode for nrepl interaction from a Clojure buffer.
 
 ;;;***
 
-;;;### (autoloads nil nil ("nrepl-pkg.el") (20488 5819 529982))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/nrepl-0.1.1/nrepl-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/nrepl-0.1.1/nrepl.el") (20535
+;;;;;;  7623 1927))
 
 ;;;***
 

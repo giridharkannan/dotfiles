@@ -15,7 +15,8 @@
                       evil
                       evil-leader
                       undo-tree
-                      nrepl)
+                      nrepl
+                      )
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -30,8 +31,13 @@
 (require 'evil)
 (evil-mode 1)
 (add-to-list 'load-path "~/.emacs.d/evil-surround")
+
 (require 'surround)
 (global-surround-mode 1)
+
+; Keybindings
+(global-set-key (kbd "C-c j") 'nrepl-jack-in)
+(global-set-key (kbd "C-f") 'find-file-in-project)
 
 ;4-clojure plugin
 ;(add-to-list 'load-path "~/.emacs.d/4clj-el/")
@@ -49,3 +55,5 @@
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+(add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))

@@ -1,22 +1,40 @@
 
 ;; ----- smex-history -----
 (
- eshell
+ find-file-in-project
+ make-directory
+ find-file
  package-install
- cd
- 5x5
- arp
- dbx
- dig
+ package-list-packages-no-fetch
+ erc
+ eshell
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 4)
+ (package-install . 14)
  (evil-mode . 1)
- (nrepl-jack-in . 12)
+ (nrepl-jack-in . 30)
  (4clojure-problem . 3)
  (python-menu . 1)
  (eshell . 3)
- (nrepl . 1)
+ (nrepl . 13)
+ (erc . 3)
+ (nrepl-macroexpansion-minor-mode . 1)
+ (find-file-in-project . 9)
+ (eval-buffer . 2)
+ (eval-last-sexp . 2)
+ (nrepl-eval-buffer . 6)
+ (nrepl-load-current-buffer . 5)
+ (paredit-mode . 1)
+ (nrepl-eval-region . 11)
+ (nrepl-switch-to-repl-buffer . 1)
+ (nrepl-clear-output . 1)
+ (package-list-packages-no-fetch . 2)
+ (find-file . 5)
+ (evil-end-of-line . 3)
+ (surround-delete . 1)
+ (make-directory . 4)
+ (auto-complete . 2)
+ (auto-complete-mode . 1)
 )

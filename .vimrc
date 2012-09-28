@@ -49,7 +49,6 @@ autocmd FileType python set sw=4
 autocmd FileType python set ts=4
 autocmd FileType python set sts=4
 autocmd FileType python set textwidth=79
-autocmd BufWritePost *.py call Flake8() 
 
 " CSS (tab width 2 chr, wrap at 79th char)
 autocmd FileType css set sw=2
@@ -85,10 +84,12 @@ augroup ft_clojure
 
 	au BufNewFile,BufRead *.clj set filetype=clojure
 
-	au FileType clojure let b:loaded_delimitMate=1
     au FileType clojure silent! call TurnOnClojureFolding()
     "au FileType clojure compiler clojure
     au FileType clojure setlocal report=100000
+
+    au FileType clojure set sw=2
+    au FileType clojure set ts=2
 
     au BufWinEnter            SLIMV.REPL setlocal nolist
     au BufNewFile,BufReadPost SLIMV.REPL setlocal nowrap foldlevel=99

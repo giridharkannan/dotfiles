@@ -3,6 +3,9 @@ URxvt*termName:screen-256color
 URxvt.foreground:white
 URxvt.background:black
 URxvt.iconFile:    /usr/share/icons/gnome/48x48/apps/terminal.png
+URxvt.perl-ext-common:  default,matcher
+URxvt.urlLauncher:      /usr/bin/chromium
+URxvt.matcher.button:   1
 
 URxvt*font:                 xft:Droid Sans Mono for Powerline:regular:size=11
 URxvt*imFont:               xft:Droid Sans Mono for Powerline:regular:size=11
