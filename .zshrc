@@ -34,22 +34,29 @@ plugins=(git arch pip fabric lein redis-cli vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
+autoload -U compinit
+compinit
+
 # Customize to your needs...
-export PATH=/home/samrat/.gem/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl
+export PATH=/home/samrat/.gem/ruby/1.9.1/bin:/root/.gem/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl
 export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python2.7.1/site-packages"
 export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python2.7/site-packages"
 export EDITOR="vim"
+export BROWSER="chromium"
 #autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
-# TMUX
-if which tmux 2>&1 >/dev/null; then
-    #if not inside a tmux session, and if no session is started, start a new session
-    test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
+ #TMUX
+#if which tmux 2>&1 >/dev/null; then
+	#if not inside a tmux session, and if no session is started, start a new session
+	#test -z "$TMUX" && (tmux attach || tmux new-session)
+#fi
 
 # Virtualenvwrapper
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 
-alias nw='emacsclient -t -a ""'
+alias t='python2.7 /usr/bin/t/t.py --task-dir ~/Dropbox/.tasks --list tasks'
+
+alias c='clear'
+alias emacs='emacs &'
