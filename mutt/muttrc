@@ -1,9 +1,22 @@
 set editor = "vim -f +/^$"
+set folder = ~/.mail               # mailbox location
 set mbox_type = Maildir
-set folder = ~/.mail
-set spoolfile = "+GMail/INBOX"
-set postponed = "+GMail/drafts"
-set sendmail    = /usr/bin/msmtp
+set spoolfile = "+samratme/Inbox"
+set postponed = "+samratme/Drafts"
+set from = "samrat@samrat.me"
+#set smtp_url = "smtp://samrat@samrat.me@smtp.zoho.com:465/"
+set sendmail    = "/usr/bin/msmtp"
+set sendmail_wait = 0
+unset record
+
+# Paths ----------------------------------------------
+set alias_file       = ~/.mutt/alias         # where to store aliases
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+set tmpdir           = ~/.mutt/tmp          # where to keep temp files
+set signature        = ~/.mutt/sig           # my signature file
 
 set mail_check = 0
 unset move
@@ -13,46 +26,179 @@ set quit
 unset mark_old
 set edit_headers
 set realname = "Samrat Man Singh"
-set reply_to
 set sort = threads
 set sort_aux = reverse-last-date-received
-mailboxes +GMail/INBOX +GMail/sent +GMail/drafts +GMail/Flask +GMail/spam +GMail/trash
+mailboxes +samratme/Inbox +samratme/Sent +samratme/Drafts +samratme/Clojure +samratme/Trash +samratme/Archives
 
-# COLORS {{{
-color status      cyan          black
-color indicator   black         yellow
-color tree        blue          black
-color error       red           black
-color hdrdefault  black         white
-color header      brightyellow  default  "^(From|Subject):"
-color header      brightcyan    default  ^To:
-color header      brightcyan    default  ^Cc:
-color index       black         red      "~F !~p !~P"
-color index       black         cyan     "~T !~F !~p !~P"
-color body        brightwhite   default  " [;:]-*[})>{(<|]
-color body        blue          default  "( *[-+=#*~_]){6,}"
-color signature   cyan          default
-color quoted      green         default
-color quoted1     yellow        default
-color quoted2     red           default
-color markers     brightred     default
-#}}}
+#set smtp_url = "smtp://smtp.zoho.com:465"
+#set smtp_authenticators="digest-md5:cram-md5"
 
-# SIDEBAR {{{
-set sidebar_width=25
-set sidebar_visible=yes
-set sidebar_delim='|'
-set sidebar_sort=yes # Not supported anymore?
-# # }}}
-# # KEYBOARD MAPPING {{{
-# # Selection of a mailbox in the index view.
-bind index \CP sidebar-prev
-bind index \CN sidebar-next
-bind index \CO sidebar-open
- # The same in the pager view.
-bind pager \CP sidebar-prev
-bind pager \CN sidebar-next
-bind pager \CO sidebar-open
-# # }}}}
+# Index View Options {{{
+
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# }}}
+# Compose View Options {{{
+
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# }}}
+# Index {{{
+
+bind index \#       noop
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index k        previous-entry
+bind index j        next-entry
+bind index gg       first-entry
+bind index G        last-entry
+bind index p        recall-message
+bind index <space>  collapse-thread
+bind index N        search-opposite
+macro index s "<pipe-message>cat > ~/Desktop/"  "save message as"
+
+# Mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+# Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+#macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+# Quickly change mailboxes
+macro index \' "<change-folder>+samratme/Inbox<enter>"   "go to INBOX"
+macro index \" "<change-folder>+samratme/Archives<enter>" "go to archive"
+
+# Search with notmuch
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py -G ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
+
+# Unlimit (show [a]ll)
+macro index a "<limit>all\n" "show all messages (undo limit)"
+
+# }}}
+
+# Sidebar {{{--------------------------------------
+set sidebar_delim   = '  │'
+set sidebar_visible = yes
+set sidebar_width   = 24
+color sidebar_new color221 color233
+
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+# }}}
+
+# Colors {{{ ---------------------------------------
+# general-doesn't-fit stuff
+color normal color252 color233
+color error color193 color124
+color markers color142 color233
+color tilde color142 color233
+color status color172 color233
+
+# index stuff
+color tree color244 color233
+color indicator color255 color235
+color index color117 color233 ~N
+color index color124 color233 ~D
+
+# header stuff
+color hdrdefault color248 color233
+color header color226 color233 "^Subject"
+
+# url, email and web stuff
+color body color68 color233 "(finger|ftp|http|https|news|telnet)://[^ >]*"
+color body color111 color233 "<URL:[^ ]*>"
+color body color111 color233 "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body color111 color233 "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body brightred color233 "^-.*"
+color body green color233 "^[+].*"
+color body brightwhite color233 "^diff .*"
+color body brightyellow color233 "^@@.*"
+
+# misc body stuff
+color attachment color111 color233
+color signature color244 color233
+
+# quote levels
+color quoted color34   color233
+color quoted1 color142 color233
+color quoted2 color34  color233
+color quoted3 color142 color233
+color quoted4 color34  color233
+color quoted5 color142 color233
+color quoted6 color34  color233
+color quoted7 color142 color233
+color quoted8 color34  color233
+color quoted9 color142 color233
+# }}}
+
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# Pager {{{---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+# }}}
+
+bind compose p postpone-message
+bind index p recall-message
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
 
 #folder-hook GMail/* source ~/.mutt/gmail.muttrc
